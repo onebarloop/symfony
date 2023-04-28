@@ -13,14 +13,16 @@ import axios from "axios";
 export default class extends Controller {
 
     static values = {
-        infoUrl: String
+        infoUrl: String,
+        track: Object
     }
 
 
     async play(event) {
         event.preventDefault();
         const response = await axios.get(this.infoUrlValue);
-        const audio = new Audio(response.data.url)
+        const audio = new Audio(response.data.url);
+        console.log(`playing: ${this.trackValue.song} by ${this.trackValue.artist}`);
         audio.play();
     }
 
